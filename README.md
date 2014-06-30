@@ -68,4 +68,4 @@ Error [Errno 2] No such file or directory while executing command ".
 
 Credits
 =======
-Most of the setup documentation was taken from [https://github.com/mjhea0/flaskr-tdd](flaskr-tdd) and [https://github.com/nouyang/WTFisThisRegister](WTFisThisRegister).
+Most of the setup documentation was taken from [flaskr-tdd](https://github.com/mjhea0/flaskr-tdd) and [WTFisThisRegister](https://github.com/nouyang/WTFisThisRegister).
