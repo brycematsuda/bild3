@@ -8,47 +8,67 @@
         <dd><input type=text size=25 maxlength=100 name=title>
         <dt>Artist:</dt>
         <dd><input type=text size=25 maxlength=100 name=artist>
-        <dt>Changes Made:</dt>
-        <br><div class="album_option"><button type=button>Album Artwork</button></div>
-        <ul class="album_changes">
-			<li><input type=radio name=album value="Add new artwork.">Add new artwork.</li>
-			<li><input type=radio name=album value="Fix artwork alignment.">Fix artwork alignment.</li>
-			<li><input type=radio name=album value="Update artwork to a higher quality.">Update artwork to a higher quality.</li>
-			<li><input type=radio name=album value="Make all album songs share the same artwork.">Make all album songs share the same artwork.</li>
-			<li><button type=button id=resetAlbum><small>Reset</small></button></li>
+        <dt>Album:</dt>
+        <dd><input type=text size=25 maxlength=100 name=album>
+        <dt>Changes:</dt>
+        <br><div class="basic_option"><button type=button>Basic Tags</button></div>
+        <ul class="basic_changes">
+			       <li><input id="change_title" type=checkbox name=basic value="Change title">Change title</li>
+                 <div id="new_title">New title: <input id="input_new_title" type=text size=20 maxlength=100 name="basic"></div>
+			       <li><input id="change_artist" type=checkbox name=basic value="Change artist">Change artist</li>
+                 <div id="new_artist">New artist: <input id="input_new_artist" type=text size=20 maxlength=100 name="basic"></div>
+			       <li><input id="change_album" type=checkbox name=basic value="Change album">Change album</li>
+                 <div id="new_album">New album: <input id="input_new_album" type=text size=20 maxlength=100 name="basic"></div>
+			       <li><button type=button id=resetBasic><small>Reset</small></button></li>
         </ul>
         <br><div class="qual_option"><button type=button>Song Quality/Edits</button></div>
         <ul class="qual_changes">
-			<li><input type=radio name=quality value="Upgrade music file to higher quality.">Upgrade to a higher quality.</li>
-			<li><input type=radio name=quality value="Re-encoding music file to lower quality.">Downgrade to a lower quality to save space.</li>
-			<li><input type=radio name=quality value="Remove extra silence.">Crop out extra silence.</li>
-			<li><input type=radio name=quality value="Add fade-out to end of song.">Fade out song to stop song smoothly.</li>
-			<li><button type=button id=resetQual><small>Reset</small></button></li>
+			       <li><input id="change_quality" type=checkbox name=quality value="Changed music quality">Change music quality</li>
+                  <div class="music_quality">
+                  <input id="hq_quality" type=radio name="quality" value="High quality">Encoded to higher quality
+                  <br><input id="low_quality" type=radio name="quality" value="Low quality">Downgraded to lower quality
+                  </div>
+			       <li><input type=checkbox name=quality value="Made edits to file">Edit music file</li>
+			       <li><button type=button id=resetQual><small>Reset</small></button></li>
         </ul>
         <dt>Choose one of the following (required):</dt>
-		<dd><input type=radio name=update value="made_changes">I have made the following changes in my local library, but haven't updated it on my music player yet, and would like to note it for the future. 
+		<dd><input type=radio name=update value="made_changes">I have made the following changes in my local library, but haven't updated it on my music player yet, and would like to note it for the future.
         <dd><input type=radio name=update value="not_changed">I have not made any of the following changes yet, and would like to note them for the future.
         <dt>Notes (required):</dt>
         <dd><textarea name=text rows=5 cols=40></textarea>
         <dd><input type=submit value=Submit>
       </dl>
     </form>
-  {% endif %} 
+  {% else %}
+  <em>You must be logged in order to add an entry.</em>
+  {% endif %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$("#resetAlbum").click(function(){
-			$('input[name="album"]').prop('checked', false);  
+		$("#resetBasic").click(function(){
+			$('input[name="basic"]').prop('checked', false);
 		});
 		$("#resetQual").click(function(){
 			$('input[name="quality"]').prop('checked', false);
 		});
+    $('#change_title').click(function() {
+      $("#new_title").toggle(this.checked);
+    });
+    $('#change_artist').click(function() {
+      $("#new_artist").toggle(this.checked);
+    });
+    $('#change_album').click(function() {
+      $("#new_album").toggle(this.checked);
+    });
+    $('#change_quality').click(function() {
+      $(".music_quality").toggle(this.checked);
+    });
 	});
 	$(".qual_option").click(function(){
 		$(".qual_changes").toggle("slow");
 	});
-	$(".album_option").click(function(){
-		$(".album_changes").toggle("slow");
+	$(".basic_option").click(function(){
+		$(".basic_changes").toggle();
 	});
-</script> 
+</script>
 {% endblock %}
