@@ -4,7 +4,7 @@ from flask import Flask, request, session, g, redirect, url_for, abort, \
 
 # configuration
 DATABASE = 'malid3.db'
-DEBUG = False
+DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'default'
@@ -55,7 +55,11 @@ def show_entries():
     return render_template('show_entries.html', entries=entries)
 
 
-@app.route('/add', methods=['POST'])
+@app.route('/add')
+def add():
+	return render_template('add.html')
+
+@app.route('/post', methods=['POST'])
 def add_entry():
 	if not session.get('logged_in'):
 		abort(401)
@@ -97,7 +101,7 @@ def login():
             error = 'Invalid password'
         else:
             session['logged_in'] = True
-            flash('You were logged in')
+            flash('You were successfully logged in')
             return redirect(url_for('show_entries'))
     return render_template('login.html', error=error)
 
@@ -105,7 +109,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
-    flash('You were logged out')
+    flash('You were successfully logged out')
     return redirect(url_for('show_entries'))
 
 if __name__ == '__main__':
