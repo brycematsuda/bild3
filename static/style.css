@@ -10,7 +10,7 @@ i				{ color: #000000 }
 p				{ margin: 0; }
 .page           { margin: 2em auto; width: 35em; border: 5px solid #ccc;
                   padding: 0.8em; background: white; }
-.entries, .basic_changes, .qual_changes, .tag_changes { list-style: none; margin: 0; padding: 0; }
+.entries, .basic_changes { list-style: none; margin: 0; padding: 0; }
 .entries li     { margin: 0.8em 1.2em; }
 .entries li h2  { margin-left: -1em; }
 .add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
@@ -20,5 +20,4 @@ p				{ margin: 0; }
 .flash          { background: #CEE5F5; padding: 0.5em;
                   border: 1px solid #AACBE2; }
 .error          { background: #F0D6D6; padding: 0.5em; }
-.basic_changes, .qual_changes, .tag_changes, .music_quality { display: none; }
-#new_title, #new_artist, #new_album  { display: none; }
+.basic_changes  { display: none; }
