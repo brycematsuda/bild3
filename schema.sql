@@ -3,8 +3,10 @@ create table entries (
   id integer primary key autoincrement,
   title varchar(255) not null,
   artist varchar(255),
-  album_art varchar(100),
-  song_quality varchar(100),
+  album varchar(255),
+  new_title varchar(255),
+  new_artist varchar(255),
+  new_album varchar(255),
   update_status varchar(100) not null,
-  text text not null
+  notes text
 );

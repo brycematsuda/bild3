@@ -61,35 +61,34 @@ def add():
 
 @app.route('/post', methods=['POST'])
 def add_entry():
-	if not session.get('logged_in'):
-		abort(401)
-	db = get_db()
-	
-	error = None
-	album = request.form.get('album', None)
-	quality = request.form.get('quality', None)
-	update = request.form.get('update', None)
-	
-	if album is not None:
-		album = request.form['album']
-	
-	if quality is not None:
-		quality = request.form['quality']
-	
-	if request.form['title'] == '':
-		error = 'Song title cannot be blank'
-	elif request.form['text'] == '':
-		error = 'Notes cannot be blank'
-	elif update is None:
-		error = 'You must note if you\'ve updated the information or not.'
-	else:	
-		db.execute('INSERT INTO entries (title, artist, text, album_art, song_quality, update_status) VALUES (?, ?, ?, ?, ?, ?)',
-		[request.form['title'], request.form['artist'], request.form['text'], album, quality, update])
-		db.commit()
-		flash('Entry was successfully added')
-		return redirect(url_for('show_entries'))
-	return render_template('show_entries.html', error=error)
+  if not session.get('logged_in'):
+    abort(401)
 
+  db = get_db()
+  error = None
+  if request.form.get('title', None) == '':
+    error = 'Song title cannot be blank.'
+  elif all_new_empty() is True:
+    error = 'You must fill in at least one tag or notes.'
+  elif request.form.get('update') is None:
+    error = 'You must note if you\'ve updated the information or not.'
+  else:
+    db.execute('INSERT INTO entries (title, artist, album, update_status, new_title, new_artist, new_album, notes) VALUES (?, ?, ?, ?, ?, ?, ? ,?)',
+    [request.form['title'], request.form['artist'], request.form['album'], request.form['update'],
+    request.form['new_title'], request.form['new_artist'], request.form['new_album'], request.form['notes']])
+    db.commit()
+    flash('Entry was successfully added')
+    return redirect(url_for('show_entries'))
+  return render_template('add.html', error=error)
+
+def all_new_empty():
+  all_empty = False
+  if ((request.form.get('new_title', None) == '') and
+     (request.form.get('new_artist', None) == '') and
+     (request.form.get('new_album', None) == '') and
+     (request.form.get('notes', None) == '')):
+     all_empty = True
+  return all_empty
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
