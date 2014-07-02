@@ -3,6 +3,9 @@ malid3
 
 malid3 is a web app designed in Python using the Flask framework for manually tracking changes made to music files. The general layout and functions were based off of the [Flaskr tutorial](http://flask.pocoo.org/docs/tutorial/introduction/), with extra columns added to the database and JQuery implementation to allow for easy navigation among options.
 
+![malid3_add_overhaul](https://cloud.githubusercontent.com/assets/6787907/3452244/130645e8-01ae-11e4-823f-2621c7742754.png)
+![malid3_add_overhaul2](https://cloud.githubusercontent.com/assets/6787907/3452243/1305fd22-01ae-11e4-9284-ed279f040bae.png)
+
 Quickstart
 ======
 
