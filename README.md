@@ -19,10 +19,12 @@ $ . venv/bin/activate
 
 To run:
 ```sh
-(venv)$ malid3.py
+(venv)$ python malid3.py
 ```
 and go to http://localhost:5000 in your browser. 
 The login info for now is the default set by the tutorial (user: admin / password: default).
+
+The database currently gets wiped every time you shutdown the server. I will fix that once basic functionality is finished.
 
 Project Setup
 ======
