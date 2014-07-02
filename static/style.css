@@ -21,3 +21,4 @@ p				{ margin: 0; }
                   border: 1px solid #AACBE2; }
 .error          { background: #F0D6D6; padding: 0.5em; }
 .basic_changes  { display: none; }
+#show_notes { white-space: pre-wrap; }
