@@ -4,14 +4,14 @@
   {% for entry in entries %}
     <li>
 		<h2>"{{ entry.title }}"</h2>
-		<h3><i>by</i> {{ entry.artist if entry.artist != '' else 'Unknown Artist' }}</h3>
-    <h3><i>from</i> {{ entry.album if entry.album != '' else 'Unknown Album' }}</h3>
+		{% if entry.artist != '' %}<h3><i>by</i> {{ entry.artist }}</h3>{% endif %}
+    {% if entry.album != '' %}<h3><i>from</i> {{ entry.album }}</h3> {% endif %}
     {% if entry.update_status == 'made_changes' %}<br><h4>The following updates have been made: </h4>
     {% else %} <br><h4>The following updates need to be made: </h4> {% endif %}
 		{% if entry.new_title != '' %}<p>- Title change to "{{ entry.new_title }}"</p> {% endif %}
     {% if entry.new_artist != '' %}<p>- Artist change to "{{ entry.new_artist }}"</p> {% endif %}
     {% if entry.new_album != '' %}<p>- Album change to "{{ entry.new_album }}"</p> {% endif %}
-		{% if entry.notes != None %}
+		{% if entry.notes != '' %}
     <br><h4>Notes:</h4>
 		<p id="show_notes">{{ entry.notes|safe }}</p>
     {% endif %}
