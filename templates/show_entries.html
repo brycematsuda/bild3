@@ -6,6 +6,7 @@
 		<h2>"{{ entry.title }}"</h2>
 		{% if entry.artist != '' %}<h3><i>by</i> {{ entry.artist }}</h3>{% endif %}
     {% if entry.album != '' %}<h3><i>from</i> {{ entry.album }}</h3> {% endif %}
+    <h5><small><a href="{{ url_for('delete', entry_id = entry.id) }}">delete entry</a></small></h5>
     {% if entry.update_status == 'made_changes' %}<br><h4>The following updates have been made: </h4>
     {% else %} <br><h4>The following updates need to be made: </h4> {% endif %}
 		{% if entry.new_title != '' %}<p>- Title change to "{{ entry.new_title }}"</p> {% endif %}

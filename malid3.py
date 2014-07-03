@@ -90,6 +90,18 @@ def all_new_empty():
      all_empty = True
   return all_empty
 
+@app.route('/delete/<int:entry_id>')
+def delete(entry_id):
+  if not session.get('logged_in'):
+    abort(401)
+
+  db = get_db()
+  entry_id = str(entry_id)
+  db.execute('DELETE from entries WHERE id =' + entry_id)
+  db.commit()
+  flash('Entry successfully removed')
+  return redirect(url_for('show_entries'))
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
