@@ -83,11 +83,11 @@ def add_entry():
 
 def all_new_empty():
   all_empty = False
-  if ((request.form.get('new_title', None) == '') and
-     (request.form.get('new_artist', None) == '') and
-     (request.form.get('new_album', None) == '') and
-     (request.form.get('notes', None) == '')):
-     all_empty = True
+  if ((request.form.get('new_title', None).strip() == '') and
+      (request.form.get('new_artist', None).strip() == '') and
+      (request.form.get('new_album', None).strip() == '') and
+      (request.form.get('notes', None).strip() == '')):
+    all_empty = True
   return all_empty
 
 @app.route('/delete/<int:entry_id>')
