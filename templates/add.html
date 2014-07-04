@@ -12,14 +12,25 @@
         <dd><input type=text size=25 maxlength=100 name=album>
         <dt>Changes:</dt>
         <dt><small>(Note: You must change at least one tag, or add something in notes.)</small></dt>
-        <div class="option" id="basic_option"><button type=button>Basic Tags</button>
-        <ul class="changes" id="basic_changes">
+        <button type=button class=option id=basic_option>Basic Tags</button>
+        <ul class=changes id=basic_changes>
 			       <li>Change track title to: <input id="change_title" name=new_title type=text name=basic size=20 maxlength=100></li>
 			       <li>Change track artist to: <input id="change_artist" name=new_artist type=text name=basic size=20 maxlength=100></li>
 			       <li>Change track album to: <input id="change_album" name=new_album type=text name=basic size=20 maxlength=100></li>
 			       <li><button type=button class=reset><small>Reset</small></button></li>
         </ul>
-      </div>
+        <br><button type=button class=option id=quality_option>Quality/Edits</button>
+        <ul class=changes id=quality_changes>
+          <li>Change music quality:
+          <select id="music_quality">
+            <option value="none">None</option>
+            <option value="high_quality">Higher quality</option>
+            <option value="low_quality">Lower quality</option>
+          </select>
+          </li>
+          <li>Edits: <input id="change_edit" name=edit type=text name=basic size=20 maxlength=100></li>
+          <li><button type=button class=reset><small>Reset</small></button></li>
+        </ul>
         <dt>Other Notes:</dt>
         <dd><textarea name=notes rows=5 cols=40></textarea>
           <dt>Choose one of the following (required):</dt>
@@ -36,9 +47,19 @@
 	$(document).ready(function() {
     $('.reset').on('click', function() {
       $(this).closest('form').find('input[type=text], textarea').val('');
-    });
+      $("select").each(function() {
+          this.selectedIndex = 0
+        });
+      });
+
     $('.option').click(function(){
-      $('.changes', this).toggle();
+    var changes = $(this).next('.changes');
+    if (changes.is(":hidden")) {
+        changes.slideDown();
+    }
+    else{
+        changes.slideUp();
+    }
     });
 	});
 </script>
