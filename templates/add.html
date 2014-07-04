@@ -4,21 +4,22 @@
   {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
     <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
       <dl>
-        <dt>Title (required):</dt>
+        <dt>Track Title (required):</dt>
         <dd><input type=text size=25 maxlength=100 name=title>
-        <dt>Artist:</dt>
+        <dt>Track Artist:</dt>
         <dd><input type=text size=25 maxlength=100 name=artist>
-        <dt>Album:</dt>
+        <dt>Track Album:</dt>
         <dd><input type=text size=25 maxlength=100 name=album>
         <dt>Changes:</dt>
         <dt><small>(Note: You must change at least one tag, or add something in notes.)</small></dt>
-        <div class="basic_option"><button type=button>Basic Tags</button></div>
-        <ul class="basic_changes">
-			       <li>Change title to: <input id="change_title" name=new_title type=text name=basic size=20 maxlength=100></li>
-			       <li>Change artist to: <input id="change_artist" name=new_artist type=text name=basic size=20 maxlength=100></li>
-			       <li>Change album to: <input id="change_album" name=new_album type=text name=basic size=20 maxlength=100></li>
+        <div class="option" id="basic_option"><button type=button>Basic Tags</button>
+        <ul class="changes" id="basic_changes">
+			       <li>Change track title to: <input id="change_title" name=new_title type=text name=basic size=20 maxlength=100></li>
+			       <li>Change track artist to: <input id="change_artist" name=new_artist type=text name=basic size=20 maxlength=100></li>
+			       <li>Change track album to: <input id="change_album" name=new_album type=text name=basic size=20 maxlength=100></li>
 			       <li><button type=button class=reset><small>Reset</small></button></li>
         </ul>
+      </div>
         <dt>Other Notes:</dt>
         <dd><textarea name=notes rows=5 cols=40></textarea>
           <dt>Choose one of the following (required):</dt>
@@ -36,9 +37,9 @@
     $('.reset').on('click', function() {
       $(this).closest('form').find('input[type=text], textarea').val('');
     });
-	});
-	$(".basic_option").click(function(){
-		$(".basic_changes").toggle();
+    $('.option').click(function(){
+      $('.changes', this).toggle();
+    });
 	});
 </script>
 {% endblock %}
