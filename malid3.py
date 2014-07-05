@@ -73,9 +73,14 @@ def add_entry():
   elif request.form.get('update') is None:
     error = 'You must note if you\'ve updated the information or not.'
   else:
-    db.execute('INSERT INTO entries (title, artist, album, update_status, new_title, new_artist, new_album, notes) VALUES (?, ?, ?, ?, ?, ?, ? ,?)',
-    [request.form['title'], request.form['artist'], request.form['album'], request.form['update'],
-    request.form['new_title'], request.form['new_artist'], request.form['new_album'], request.form['notes']])
+    db.execute('INSERT INTO entries (title, artist, album, update_status) VALUES (?, ?, ?, ?)',
+    [request.form['title'], request.form['artist'], request.form['album'], request.form['update']])
+    db.commit()
+    db.execute('UPDATE entries SET new_title=:n_title, new_artist=:n_artist, new_album=:n_album WHERE title=:title',
+    {"n_title": request.form['new_title'], "n_artist": request.form['new_artist'], "n_album": request.form['new_album'], "title": request.form['title']})
+    db.commit()
+    db.execute('UPDATE entries SET notes=:notes, quality=:quality, edits=:edits WHERE title=:title',
+    {"notes": request.form['notes'], "quality": request.form['music_quality'], "edits": request.form['change_edit'], "title": request.form['title']})
     db.commit()
     flash('Entry was successfully added')
     return redirect(url_for('show_entries'))
@@ -86,7 +91,8 @@ def all_new_empty():
   if ((request.form.get('new_title', None).strip() == '') and
       (request.form.get('new_artist', None).strip() == '') and
       (request.form.get('new_album', None).strip() == '') and
-      (request.form.get('notes', None).strip() == '')):
+      (request.form.get('notes', None).strip() == '') and
+      (request.form.get('change_edit', None).strip() == '')):
     all_empty = True
   return all_empty
 

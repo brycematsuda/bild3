@@ -7,6 +7,8 @@ create table entries (
   new_title varchar(255),
   new_artist varchar(255),
   new_album varchar(255),
+  quality varchar(100),
+  edits varchar(255),
   update_status varchar(100) not null,
   notes text
 );
