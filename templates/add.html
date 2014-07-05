@@ -36,7 +36,7 @@
           <dt>Choose one of the following (required):</dt>
             <dd><input type=radio name=update value="made_changes">I have made the following changes in my local library, but haven't updated it on my music player yet, and would like to note it for the future.
             <dd><input type=radio name=update value="not_changed">I have not made any of the following changes yet, and would like to note them for the future.
-        <dd><input type=submit value=Submit>
+        <dd><button type=button id='full_reset'>Reset All</button><input type=submit value=Submit>
       </dl>
     </form>
   {% else %}
@@ -46,12 +46,14 @@
 <script>
 	$(document).ready(function() {
     $('.reset').on('click', function() {
-      $(this).closest('form').find('input[type=text], textarea').val('');
+      $(this).closest('.changes').find('input[type=text], textarea').val('');
       $("select").each(function() {
           this.selectedIndex = 0
         });
       });
-
+    $('#full_reset').on('click', function() {
+      $(this).closest('form').find('input[type=text], textarea').val('');
+    });
     $('.option').click(function(){
     var changes = $(this).next('.changes');
     if (changes.is(":hidden")) {
