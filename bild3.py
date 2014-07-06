@@ -1,9 +1,11 @@
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack
+import requests
+from bs4 import BeautifulSoup
 
 # configuration
-DATABASE = 'malid3.db'
+DATABASE = 'bild3.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
@@ -21,6 +23,12 @@ def init_db():
         db = get_db()
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
+        db.commit()
+        import billboard
+        chart = billboard.ChartData('hot-100', None, True, True)
+        for x in range(0, 10):
+          db.execute('INSERT INTO billboard100 (title, artist, album, peakPos, lastPos, weeks) VALUES (?, ?, ?, ?, ?, ?)',
+          [chart[x].title, chart[x].artist, chart[x].album, chart[x].peakPos, chart[x].lastPos, chart[x].weeks])
         db.commit()
 
 
@@ -122,6 +130,13 @@ def login():
             return redirect(url_for('show_entries'))
     return render_template('login.html', error=error)
 
+
+@app.route('/billboard')
+def billboard():
+  db = get_db()
+  cur = db.execute('SELECT * FROM billboard100 ORDER BY rank')
+  entries = cur.fetchall()
+  return render_template('billboard.html', entries=entries)
 
 @app.route('/logout')
 def logout():

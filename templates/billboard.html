@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class=entries>
+  {% for entry in entries %}
+    <li>
+		<h2>#{{ entry.rank }} | "{{ entry.title }}"</h2>
+		{% if entry.artist != '' %}<h3><i>by</i> {{ entry.artist }}</h3>{% endif %}
+    {% if entry.album != '' %}<h3><i>from</i> {{ entry.album }}</h3> {% endif %}
+  {% else %}
+    <li><em>Couldn't get entries. Check your connection.</em></li>
+  {% endfor %}
+</ul>
+{% endblock %}

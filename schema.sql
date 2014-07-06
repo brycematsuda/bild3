@@ -1,4 +1,5 @@
 drop table if exists entries;
+drop table if exists billboard100;
 create table entries (
   id integer primary key autoincrement,
   title varchar(255) not null,
@@ -11,4 +12,14 @@ create table entries (
   edits varchar(255),
   update_status varchar(100) not null,
   notes text
+);
+
+create table billboard100(
+  rank integer primary key not null,
+  title varchar(255) not null,
+  artist varchar(255) not null,
+  album varchar(255) not null,
+  peakPos integer not null,
+  lastPos integer not null,
+  weeks integer not null
 );
