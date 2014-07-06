@@ -53,7 +53,7 @@ class ChartData:
         for n, entry in enumerate(self.entries):
             s += '\n%s. %s' % (str(n + 1), str(entry))
         return s
-        
+
     def __getitem__(self, key):
         return self.entries[key]
 
@@ -74,8 +74,8 @@ class ChartData:
                 if len(chartInfoSoup.contents) >= 4:
                     # Chart info includes both artist and album info
                     artist = chartInfoSoup.contents[1].string
-                    if chartInfoSoup.contents[3].string:
-                        album = chartInfoSoup.contents[3].string.strip()
+                    if chartInfoSoup.contents[4].string:
+                        album = chartInfoSoup.contents[4].string.strip()
                     else:
                         album = None
                 else:
