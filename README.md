@@ -1,7 +1,7 @@
-malid3
+bild3
 ======
 
-malid3 is a web app designed in Python using the Flask framework for manually tracking changes made to music files. The general layout and functions were based off of the [Flaskr tutorial](http://flask.pocoo.org/docs/tutorial/introduction/), with extra columns added to the database and JQuery implementation to allow for easy navigation among options.
+bild3 (formerly malid3) is a web app designed in Python using the Flask framework for manually tracking changes made to music files and easy access to the Billboard Hot 100 through an [unofficial API designed by guoguo12](https://github.com/guoguo12/billboard-charts) without the unnecessary pictures/articles. The general layout and functions were based off of the [Flaskr tutorial](http://flask.pocoo.org/docs/tutorial/introduction/), with extra columns added to the database and JQuery implementation to allow for easy navigation among options.
 
 ![malid3_add_overhaul](https://cloud.githubusercontent.com/assets/6787907/3452244/130645e8-01ae-11e4-823f-2621c7742754.png)
 ![malid3_add_overhaul2](https://cloud.githubusercontent.com/assets/6787907/3452243/1305fd22-01ae-11e4-9284-ed279f040bae.png)
@@ -11,15 +11,23 @@ Quickstart
 
 If you already have git, pip, and virtualenv:
 ```sh
-$ git clone https://github.com/brycematsuda/malid3.git
-$ cd malid3
+$ git clone https://github.com/brycematsuda/bild3.git
+$ cd bild3
 $ virtualenv venv
 $ . venv/bin/activate
 ```
 
+For first time users, Flask, BeautifulSoup4 and Requests need to be installed on virtualenv in order for the script to run.
+```sh
+$ . venv/bin/activate
+(venv)$ pip install Flask
+(venv)$ pip install beautifulsoup4
+(venv)$ pip install requests
+```
+
 To run:
 ```sh
-(venv)$ python malid3.py
+(venv)$ python bild3.py
 ```
 and go to http://localhost:5000 in your browser. 
 The login info for now is the default set by the tutorial (user: admin / password: default).
@@ -30,7 +38,7 @@ Project Setup
 ======
 #### Download this repository from github.
 ```sh
-$ git clone https://github.com/brycematsuda/malid3.git
+$ git clone https://github.com/brycematsuda/bild3.git
 ```
 If you don't have git,
 ```sh
@@ -73,4 +81,6 @@ Error [Errno 2] No such file or directory while executing command ".
 
 Credits
 =======
-Most of the setup documentation was taken from [flaskr-tdd](https://github.com/mjhea0/flaskr-tdd) and [WTFisThisRegister](https://github.com/nouyang/WTFisThisRegister).
+- Most of the setup documentation was taken from [flaskr-tdd](https://github.com/mjhea0/flaskr-tdd) and [WTFisThisRegister](https://github.com/nouyang/WTFisThisRegister).
+- [guoguo12](http://github.com/guoguo12) for the unofficial Billboard API
+- The Billboard charts are owned by Prometheus Global Media LLC. See Billboard.com's [Terms of Use](http://www.billboard.com/terms-of-use) for more information.
