@@ -1,13 +1,64 @@
 {% extends "layout.html" %}
 {% block body %}
+  <h1 class=billheader>Billboard Hot 100</h1>
+  <h4>For the week of <p style="display:inline;" id=date></p></h4>
+  <h5>color code:
+      <p style="display:inline; color: blue">rank up</p> |
+      <p style="display:inline; color: red">rank down</p> |
+      <p style="display:inline; color: #ffcc33">no change</p> |
+      <p style="display:inline; color: green">new entry</p> |
+      <p style="display:inline; color: #660066">re-entry</p></h5>
   <ul class=entries>
   {% for entry in entries %}
     <li>
-		<h2>#{{ entry.rank }} | "{{ entry.title }}"</h2>
+		<h2>#<p class=entry id="entry_rank_{{ entry.rank }}">{{ entry.rank }}</p> | <p class=entry id="entry_title_{{ entry.rank }}">"{{ entry.title }}"</p></h2>
 		{% if entry.artist != '' %}<h3><i>by</i> {{ entry.artist }}</h3>{% endif %}
     {% if entry.album != '' %}<h3><i>from</i> {{ entry.album }}</h3> {% endif %}
+    <h5>peak: {{ entry.peakPos }} |
+    last week: <p class=entry id="entry_last_{{ entry.rank }}">{{ entry.lastPos }}</p> |
+    weeks: <p class=entry id="entry_weeks_{{ entry.rank }}">{{ entry.weeks }}</p></h5>
   {% else %}
     <li><em>Couldn't get entries. Check your connection.</em></li>
   {% endfor %}
 </ul>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+  var d = new Date();
+
+  var month = d.getMonth() + 1;
+  if (d.getDay() == 5){
+    d.getDate() + 6;
+  }
+  else{
+    var day = d.getDate() + (5 - d.getDay());
+  }
+  var output = month + '/' + day + '/' + d.getFullYear();
+  document.getElementById("date").innerHTML = output;
+
+  var rankArray = $("*[id^='entry_rank']");
+  var lastArray = $("*[id^='entry_last']");
+  var weeksArray = $("*[id^='entry_weeks']");
+  var titleArray = $("*[id^='entry_title']");
+
+  for (var i = 0; i < rankArray.length; i++)
+    {
+        // No change in rank
+      if (+rankArray[i].innerHTML == +lastArray[i].innerHTML) {
+          titleArray.eq(i).css("color", "#ffcc33");
+        // Re-entry
+      } else if (+lastArray[i].innerHTML == 0 && weeksArray[i].innerHTML > 1) {
+          titleArray.eq(i).css("color", "#660066")
+        // New entry
+      } else if (+lastArray[i].innerHTML == 0 && weeksArray[i].innerHTML == 1) {
+          titleArray.eq(i).css("color", "green")
+        // Fell in ranks
+      } else if (+rankArray[i].innerHTML > +lastArray[i].innerHTML){
+        titleArray.eq(i).css("color", "red");
+        // Rose in ranks
+      } else if ((+rankArray[i].innerHTML < +lastArray[i].innerHTML)
+                 && +lastArray[i].innerHTML != 0) {
+        titleArray.eq(i).css("color", "blue")
+      }
+    }
+</script>
 {% endblock %}

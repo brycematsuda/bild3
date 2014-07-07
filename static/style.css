@@ -1,8 +1,7 @@
 body            { font-family: sans-serif; background: #eee; overflow: scroll;}
 a, h1, h2, h3, h4	{ color: #333399; }
-h2, h3, h4      { font-family: Arial, sans-serif; }
+h1, h2, h3, h4      { font-family: Arial, sans-serif; }
 h1, h2, h3, h4, h5 	{ margin: 0;}
-h1              { font-family: Courier, serif; border-bottom: 2px solid #eee; }
 h2              { font-size: 1.2em solid; }
 h3				{ font-size: 1em solid; }
 h4				{ font-size: 0.8em solid; }
@@ -22,3 +21,4 @@ p				{ margin: 0; }
 .error          { background: #F0D6D6; padding: 0.5em; }
 .changes        { display: none; }
 #show_notes     { white-space: pre-wrap; }
+.entry         { display: inline; }

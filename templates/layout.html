@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <title>bild3</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<style>
+.title { font-family: Courier, serif; border-bottom: 2px solid #eee; }
+</style>
 <div class=page>
-  <h1>bild3</h1>
+  <h1 class="title">bild3</h1>
   <div class=metanav>
 	<a href="{{ url_for('show_entries') }}">home</a>
     | <a href="{{ url_for('billboard') }}">billboard</a>
