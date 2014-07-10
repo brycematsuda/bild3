@@ -15,13 +15,15 @@ HEADERS = {'User-Agent': 'billboard.py (https://github.com/guoguo12/billboard-ch
 
 class ChartEntry:
 
-    def __init__(self, title, artist, album, peakPos, lastPos, weeks):
+    def __init__(self, title, artist, album, peakPos, lastPos, weeks, rank, change):
         self.title = title
         self.artist = artist
         self.album = album
         self.peakPos = peakPos
         self.lastPos = lastPos
         self.weeks = weeks
+        self.rank = rank
+        self.change = change
 
     def __repr__(self):
         if self.album:
@@ -51,9 +53,9 @@ class ChartData:
             s = '%s chart from %s' % (self.name, self.date)
         s += '\n' + '-' * len(s)
         for n, entry in enumerate(self.entries):
-            s += '\n%s. %s' % (str(n + 1), str(entry))
+            s += '\n%s. %s (%s)' % (entry.rank, str(entry), entry.change)
         return s
-
+        
     def __getitem__(self, key):
         return self.entries[key]
 
@@ -76,7 +78,7 @@ class ChartData:
                     artist = chartInfoSoup.contents[1].string
                     if chartInfoSoup.contents[3].string:
                         album = chartInfoSoup.contents[3].string.strip()
-                    # Index where album info is stored might be off by one depending on client/IP.
+                       	# Index where album info is stored might be off by one depending on client/IP.
                     elif chartInfoSoup.contents[4].string:
                         album = chartInfoSoup.contents[4].string.strip()
                     else:
@@ -99,7 +101,25 @@ class ChartData:
                     # No last position
                     lastPos = 0
                 weeks = int(pos_soups[2].contents[2].strip())
-                self.entries.append(ChartEntry(title, artist, album, peakPos, lastPos, weeks))
+                rank = entry_soup.header.find('span', 'chart_position').string.strip()
+                change = lastPos - int(rank)
+                if lastPos == 0:
+                    # New entry
+                    if weeks > 1: 
+                        # If entry has been on charts before, it's a re-entry
+                        change = "Re-Entry"
+                    else: 
+                        change = "New"
+                elif change > 0:
+                    change = "+" + str(change)
+                else:
+                    change = str(change)
+                self.entries.append(ChartEntry(title, artist, album, peakPos, lastPos, weeks, rank, change))
+        # Hot Shot Debut is the top-ranked new entry, or the first "New" entry we find.
+        for entry in self.entries:
+			if entry.change == "New":
+				entry.change = "Hot Shot Debut"
+				break
 
 
 def downloadHTML(url, params):
