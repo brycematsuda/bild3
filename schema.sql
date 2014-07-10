@@ -21,5 +21,6 @@ create table billboard100(
   album varchar(255),
   peakPos integer not null,
   lastPos integer not null,
-  weeks integer not null
+  weeks integer not null,
+  rankChange varchar(100) not null
 );

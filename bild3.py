@@ -26,8 +26,8 @@ def init_db():
         import billboard
         chart = billboard.ChartData('hot-100', None, True, True)
         for x in range(0, 100):
-          db.execute('INSERT INTO billboard100 (title, artist, album, peakPos, lastPos, weeks) VALUES (?, ?, ?, ?, ?, ?)',
-          [chart[x].title, chart[x].artist, chart[x].album, chart[x].peakPos, chart[x].lastPos, chart[x].weeks])
+          db.execute('INSERT INTO billboard100 (title, artist, album, peakPos, lastPos, weeks, rankChange) VALUES (?, ?, ?, ?, ?, ?, ?)',
+          [chart[x].title, chart[x].artist, chart[x].album, chart[x].peakPos, chart[x].lastPos, chart[x].weeks, chart[x].change])
         db.commit()
 
 
