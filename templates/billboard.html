@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {% block body %}
   <h1 class=billheader>Billboard Hot 100</h1>
-  <h4>For the week of <p style="display:inline;" id=date></p></h4>
-  <h5>color code:</h5>
-  <h5><p style="display:inline; color: blue">rank up</p> |
+  <h4 class=billheader>(updated every Thursday at 10:00am ET)</h4>
+  <h5 class=colorcode>color code:</h5>
+  <h5 class=colorcode><p style="display:inline; color: blue">rank up</p> |
       <p style="display:inline; color: red">rank down</p> |
       <p style="display:inline; color: #ffcc33">no change</p> |
       <p style="display:inline; color: green">new entry</p> |
@@ -25,19 +25,6 @@
 </ul>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
-  var d = new Date();
-
-  var month = d.getMonth() + 1;
-  if (d.getDay() == 4){
-    day = d.getDate() + 9;
-  } 
-  else {
-	//TODO: Figure out how to keep day constant.
-  }
-
-  var output = month + '/' + day + '/' + d.getFullYear();
-  document.getElementById("date").innerHTML = output;
-
   var changeArray = $("*[id^='entry_change']");
   var titleArray = $("*[id^='entry_title']");
 

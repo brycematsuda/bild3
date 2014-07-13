@@ -22,3 +22,4 @@ p				{ margin: 0; }
 .changes        { display: none; }
 #show_notes     { white-space: pre-wrap; }
 .entry         { display: inline; }
+.colorcode, .billheader { text-align: center; }
