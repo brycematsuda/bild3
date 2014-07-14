@@ -12,10 +12,10 @@ try:
 	USERNAME = 'admin'
 	PASSWORD = 'default'
 except ImportError:
-    SECRET_KEY = os.environ.get('SECRET_KEY') 
-    USERNAME = os.environ.get('USERNAME')
-    PASSWORD = os.environ.get('PASSWORD')
-    DEBUG = False
+	SECRET_KEY = os.environ.get('SECRET_KEY') 
+	USERNAME = os.environ.get('USERNAME')
+	PASSWORD = os.environ.get('PASSWORD')
+	DEBUG = False
 
 # create our little application :)
 app = Flask(__name__)
@@ -151,4 +151,5 @@ def logout():
 
 if __name__ == '__main__':
 	init_db()
-	app.run()
+	port = int(os.environ.get("PORT", 5000))
+  app.run(host='0.0.0.0', port=port)
