@@ -1,15 +1,21 @@
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, _app_ctx_stack
-import requests
+import requests, os
 from bs4 import BeautifulSoup
 
 # configuration
-DATABASE = 'bild3.db'
-DEBUG = True
-SECRET_KEY = 'development key'
-USERNAME = 'admin'
-PASSWORD = 'default'
+try:
+	DATABASE = 'bild3.db'
+	DEBUG = True
+	SECRET_KEY = 'development key'
+	USERNAME = 'admin'
+	PASSWORD = 'default'
+except ImportError:
+    SECRET_KEY = os.environ.get('SECRET_KEY') 
+    USERNAME = os.environ.get('USERNAME')
+    PASSWORD = os.environ.get('PASSWORD')
+    DEBUG = False
 
 # create our little application :)
 app = Flask(__name__)
