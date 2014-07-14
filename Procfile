@@ -1,1 +1,1 @@
-web: python bild3.py --log-file=-
+web: python bild3.py
