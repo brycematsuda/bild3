@@ -1,1 +1,1 @@
-web: python bild3.py
+web: python bild3.py ${PORT}
