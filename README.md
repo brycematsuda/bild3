@@ -1,20 +1,15 @@
-bild3
+simply-billboard
 ======
 
-bild3 (formerly malid3) is a web app designed in Python using the Flask framework for manually tracking changes made to music files and easy access to the Billboard Hot 100 through an [unofficial API designed by guoguo12](https://github.com/guoguo12/billboard-charts) without the unnecessary pictures/articles. The general layout and functions were based off of the [Flaskr tutorial](http://flask.pocoo.org/docs/tutorial/introduction/), with extra columns added to the database and JQuery implementation to allow for easy navigation among options.
-
-It can be seen at http://bild3.herokuapp.com/. The database resets after an hour of inactivity since a free Heroku account allows for only one dyno.
-
-![malid3_add_overhaul](https://cloud.githubusercontent.com/assets/6787907/3452244/130645e8-01ae-11e4-823f-2621c7742754.png)
-![malid3_add_overhaul2](https://cloud.githubusercontent.com/assets/6787907/3452243/1305fd22-01ae-11e4-9284-ed279f040bae.png)
+simply-billboard is a web app designed in Python using the Flask framework for displaying the Billboard Hot 100 through a simple layout without the unnecessary advertisements using an [unofficial API designed by guoguo12](https://github.com/guoguo12/billboard-charts). The general layout was based off of the [Flaskr tutorial](http://flask.pocoo.org/docs/tutorial/introduction/).
 
 Quickstart
 ======
 
 If you already have git, pip, and virtualenv:
 ```sh
-$ git clone https://github.com/brycematsuda/bild3.git
-$ cd bild3
+$ git clone https://github.com/brycematsuda/simply-billboard.git
+$ cd simply-billboard
 $ virtualenv venv
 $ . venv/bin/activate
 (venv)$ pip install -r requirements.txt
@@ -22,7 +17,7 @@ $ . venv/bin/activate
 
 To run:
 ```sh
-(venv)$ python bild3.py
+(venv)$ python simply-billboard.py
 ```
 or:
 ```sh
@@ -38,13 +33,11 @@ To deploy to Heroku:
 ```
 and go to the URL given in the shell output. 
 
-The login info for now is the default set by the tutorial (user: admin / password: default).
-
 Project Setup
 ======
 #### Download this repository from github.
 ```sh
-$ git clone https://github.com/brycematsuda/bild3.git
+$ git clone https://github.com/brycematsuda/simply-billboard.git
 ```
 If you don't have git,
 ```sh

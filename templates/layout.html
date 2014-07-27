@@ -1,21 +1,8 @@
 <!DOCTYPE html>
-<title>bild3</title>
+<title>simply-billboard</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<style>
-.title { font-family: Courier, serif; border-bottom: 2px solid #eee; }
-</style>
 <div class=page>
-  <h1 class="title">bild3</h1>
-  <div class=metanav>
-	<a href="{{ url_for('show_entries') }}">home</a>
-    | <a href="{{ url_for('billboard') }}">billboard</a>
-  {% if not session.logged_in %}
-    | <a href="{{ url_for('login') }}">log in</a>
-  {% else %}
-	  | <a href="{{ url_for('add') }}">add entry</a>
-    | <a href="{{ url_for('logout') }}">log out</a>
-  {% endif %}
-  </div>
+  <h1 class="title">simply-billboard</h1>
   {% for message in get_flashed_messages() %}
     <div class=flash>{{ message }}</div>
   {% endfor %}
