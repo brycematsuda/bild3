@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   <h1 class=billheader>Billboard Hot 100</h1>
-  <h4 class=billheader>(updated every Thursday at 10:00am ET)</h4>
+  <h4 class=billheader>(updated every Thursday by 10:00am ET)</h4>
   <h5 class=colorcode>color code:</h5>
   <h5 class=colorcode><p style="display:inline; color: blue">rank up</p> |
       <p style="display:inline; color: red">rank down</p> |
@@ -17,7 +17,7 @@
 		{% if entry.artist != '' %}<h3><i>by</i> {{ entry.artist }}</h3>{% endif %}
     {% if entry.album != '' %}<h3><i>from</i> {{ entry.album }}</h3> {% endif %}
     <h5>peak: {{ entry.peakPos }} |
-    last week: <p class=entry id="entry_last_{{ entry.rank }}">{{ entry.lastPos }}</p> |
+    last week: <p class=entry id="entry_last_{{ entry.rank }}">{{ entry.lastPos if entry.lastPos != 0 else '-' }}</p> |
     weeks on chart: <p class=entry id="entry_weeks_{{ entry.rank }}">{{ entry.weeks }}</p></h5>
   {% else %}
     <li><em>Couldn't get entries. Check your connection.</em></li>
