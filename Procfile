@@ -1,1 +1,1 @@
-web: python bild3.py ${PORT}
+web: python simply-billboard.py ${PORT}
