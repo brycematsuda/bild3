@@ -10,17 +10,16 @@
   <p style="display:inline; color: #660066">re-entry</p> |
   <p style="display:inline; color: grey">hot shot debut</p></h5>
 
-  <table class="table table-condensed">
+  <table class="table" data-page-size="10">
     <thead>
       <tr>
-        <th >#</th>
-        <th>Rank Change</th>
+        <th data-type="numeric">#</th>
         <th>Title</th>
-        <th>Artist</th>
-        <th>Album</th>
-        <th>Peak</th>
-        <th>Last Week</th>
-        <th>Weeks on Chart</th>
+        <th data-hide="phone, tablet">Artist</th>
+        <th data-type="numeric" data-hide="phone, tablet">Last Week</th>
+        <th data-type="numeric" data-hide="phone, tablet">Rank Change</th>
+        <th data-type="numeric" data-hide="phone, tablet">Peak</th>
+        <th data-type="numeric" data-hide="phone, tablet">Total Weeks</th>
       </tr>
     </thead>
     <tbody>
@@ -38,16 +37,22 @@
       {% else -%}
       <tr>
       {% endif -%}
-        <td>{{ entry.rank }}</td>
-        <td>{{ entry.rankChange }}</td>
+        <td class="rank">{{ entry.rank }}</td>
         <td>{{ entry.title }}</td>
         <td>{{ entry.artist }}</td>
-        <td>{{ entry.album }}</td>
-        <td>{{ entry.peakPos }}</td>
         <td>{{ entry.lastPos if entry.lastPos != 0 else '-' }}</td>
+        <td>{{ entry.rankChange }}</td>
+        <td>{{ entry.peakPos }}</td>
         <td>{{ entry.weeks }}</td>
       </tr>
       {% endfor %}
-    </tbody>
+    </tbody>    
+    <tfoot>
+    <tr>
+        <td colspan="8">
+            <div class="pagination pagination-centered"></div>
+        </td>
+    </tr>
+    </tfoot>
   </table>
 {% endblock -%}
