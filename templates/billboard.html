@@ -10,7 +10,7 @@
   <p style="display:inline; color: #660066">re-entry</p> |
   <p style="display:inline; color: grey">hot shot debut</p></h5>
 
-  <table class="table" data-page-size="10">
+  <table class="table" data-page-navigation=".pagination" data-page-size="10">
     <thead>
       <tr>
         <th data-type="numeric">#</th>
@@ -47,12 +47,12 @@
       </tr>
       {% endfor %}
     </tbody>    
-    <tfoot>
+  <tfoot>
     <tr>
-        <td colspan="8">
-            <div class="pagination pagination-centered"></div>
-        </td>
+      <td colspan="8">
+        <div class="pagination hide-if-no-paging"></div>
+      </td>
     </tr>
-    </tfoot>
+  </tfoot>
   </table>
 {% endblock -%}
