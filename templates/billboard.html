@@ -4,12 +4,12 @@
 <h4 class="billheader">(updated every Thursday by 10:00am ET)</h4>
 <h5 class="colorcode">color code:</h5>
 <h5 class="colorcode">
-  <p class="rankcode" style="color: blue">rank up</p> |
-  <p class="rankcode" style="color: red">rank down</p> |
-  <p class="rankcode" style="color: #ffcc33">no change</p> |
+  <p class="rankcode" style="color: blue" data-toggle="tooltip" data-placement="top" title="Position has increased relative to last week">rank up</p> |
+  <p class="rankcode" style="color: red" data-toggle="tooltip" data-placement="top" title="Position has dropped relative to last week">rank down</p> |
+  <p class="rankcode" style="color: #ffcc33" data-toggle="tooltip" data-placement="top" title="Position has stayed relative to last week">no change</p> |
   <p class="rankcode" style="color: green">new entry</p> |
   <p class="rankcode" style="color: #660066">re-entry</p> |
-  <p class="rankcode" style="color: grey">hot shot debut</p>
+  <p class="rankcode" style="color: grey"  data-toggle="tooltip" data-placement="top" title="Highest ranked new entry.">hot shot debut</p>
 </h5>
 
   <table class="table" data-page-navigation=".pagination" data-page-size="10">
@@ -38,7 +38,7 @@
       {% else -%}
       <tr>
       {% endif -%}
-        <td class="rank">{{ entry.rank }} ({{ entry.rankChange }})</td>
+        <td class="rank" data-value="{{ entry.rank }}">{{ entry.rank }} ({{ entry.rankChange }})</td>
         <td>{{ entry.title }}</td>
         <td>{{ entry.artist }}</td>
         <td>{{ entry.lastPos if entry.lastPos != 0 else '-' }}</td>
