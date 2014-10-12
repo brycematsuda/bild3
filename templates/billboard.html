@@ -3,12 +3,14 @@
 <h1 class="billheader">Billboard Hot 100</h1>
 <h4 class="billheader">(updated every Thursday by 10:00am ET)</h4>
 <h5 class="colorcode">color code:</h5>
-<h5 class="colorcode"><p style="display:inline; color: blue">rank up</p> |
-  <p style="display:inline; color: red">rank down</p> |
-  <p style="display:inline; color: #ffcc33">no change</p> |
-  <p style="display:inline; color: green">new entry</p> |
-  <p style="display:inline; color: #660066">re-entry</p> |
-  <p style="display:inline; color: grey">hot shot debut</p></h5>
+<h5 class="colorcode">
+  <p class="rankcode" style="color: blue">rank up</p> |
+  <p class="rankcode" style="color: red">rank down</p> |
+  <p class="rankcode" style="color: #ffcc33">no change</p> |
+  <p class="rankcode" style="color: green">new entry</p> |
+  <p class="rankcode" style="color: #660066">re-entry</p> |
+  <p class="rankcode" style="color: grey">hot shot debut</p>
+</h5>
 
   <table class="table" data-page-navigation=".pagination" data-page-size="10">
     <thead>
@@ -17,7 +19,6 @@
         <th>Title</th>
         <th data-hide="phone, tablet">Artist</th>
         <th data-type="numeric" data-hide="phone, tablet">Last Week</th>
-        <th data-type="numeric" data-hide="phone, tablet">Rank Change</th>
         <th data-type="numeric" data-hide="phone, tablet">Peak</th>
         <th data-type="numeric" data-hide="phone, tablet">Total Weeks</th>
       </tr>
@@ -37,11 +38,10 @@
       {% else -%}
       <tr>
       {% endif -%}
-        <td class="rank">{{ entry.rank }}</td>
+        <td class="rank">{{ entry.rank }} ({{ entry.rankChange }})</td>
         <td>{{ entry.title }}</td>
         <td>{{ entry.artist }}</td>
         <td>{{ entry.lastPos if entry.lastPos != 0 else '-' }}</td>
-        <td>{{ entry.rankChange }}</td>
         <td>{{ entry.peakPos }}</td>
         <td>{{ entry.weeks }}</td>
       </tr>

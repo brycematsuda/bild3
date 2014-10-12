@@ -17,3 +17,5 @@ table { margin-top: 8px;}
 .entry         { display: inline; }
 .colorcode, .billheader, .title { text-align: center; }
 .pagination { margin: 0 auto; width: 100%; }
+.rankcode { display:inline; }
+td.rank { width: 5%; }
