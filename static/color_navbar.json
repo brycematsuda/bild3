@@ -1,0 +1,34 @@
+{ "color_navbar": 
+  [
+    {
+      "color": "blue",
+      "tooltip": "Position has increased relative to last week.",
+      "text": "rank up"
+    },
+    {
+      "color": "red",
+      "tooltip": "Position has decreased relative to last week.",
+      "text": "rank down"
+    },
+    {
+      "color": "#ffcc33",
+      "tooltip": "Position has stayed relative to last week.",
+      "text": "no change"
+    },
+    {
+      "color": "green",
+      "tooltip": "New entry.",
+      "text": "new entry"
+    },
+    {
+      "color": "#660066",
+      "tooltip": "Entry has re-entered chart.",
+      "text": "re-entry"
+    },
+    {
+      "color": "grey",
+      "tooltip": "Highest ranked new entry.",
+      "text": "hot shot debut"
+    }
+ ]
+}

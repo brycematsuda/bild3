@@ -1,23 +1,16 @@
 {% extends "layout.html" -%}
 {% block body -%}
-<h1 class="billheader">Billboard Hot 100</h1>
-<h4 class="billheader">(updated every Thursday by 10:00am ET)</h4>
-<h5 class="colorcode">color code:</h5>
-<h5 class="colorcode">
-  <p class="rankcode" style="color: blue" data-toggle="tooltip" data-placement="top" title="Position has increased relative to last week">rank up</p> |
-  <p class="rankcode" style="color: red" data-toggle="tooltip" data-placement="top" title="Position has dropped relative to last week">rank down</p> |
-  <p class="rankcode" style="color: #ffcc33" data-toggle="tooltip" data-placement="top" title="Position has stayed relative to last week">no change</p> |
-  <p class="rankcode" style="color: green">new entry</p> |
-  <p class="rankcode" style="color: #660066">re-entry</p> |
-  <p class="rankcode" style="color: grey"  data-toggle="tooltip" data-placement="top" title="Highest ranked new entry.">hot shot debut</p>
-</h5>
-
+<h1 class="header">Billboard Hot 100</h1>
+<h4 class="header">(updated every Thursday by 10:00am ET)</h4>
+<h5 class="header">color code:</h5>
+<nav id="color-navbar">
+</nav>
   <table class="table" data-page-navigation=".pagination" data-page-size="10">
     <thead>
       <tr>
         <th data-type="numeric">#</th>
         <th>Title</th>
-        <th data-hide="phone, tablet">Artist</th>
+        <th data-hide="phone">Artist</th>
         <th data-type="numeric" data-hide="phone, tablet">Last Week</th>
         <th data-type="numeric" data-hide="phone, tablet">Peak</th>
         <th data-type="numeric" data-hide="phone, tablet">Total Weeks</th>
