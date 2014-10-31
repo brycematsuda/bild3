@@ -20,6 +20,8 @@
       {% for entry in entries -%}
       {% if entry.rankChange == "0" -%}
       <tr class="warning">
+      {% elif "Re-Entry" in entry.rankChange -%}
+      <tr class="re-entry">
       {% elif entry.rankChange == "New" -%}
       <tr class="success">
       {% elif "+" in entry.rankChange -%}
